@@ -104,7 +104,7 @@ coinpunk.controllers.Tx.prototype.create = function() {
     try {
       new Bitcoin.Address(address, coinpunk.config.network);
     } catch (e) {
-      errors.push('The provided bitcoin address is not valid.');
+      errors.push('The provided templecoin address is not valid.');
     }
   }
 
@@ -112,7 +112,7 @@ coinpunk.controllers.Tx.prototype.create = function() {
 
   for(var i=0; i<myAddresses.length;i++) {
     if(myAddresses[i].address == address)
-      errors.push('You cannot send to your own bitcoin wallet.');
+      errors.push('You cannot send to your own templecoin wallet.');
   }
 
   if(amount == '' || parseFloat(amount) == 0) {
@@ -234,12 +234,12 @@ coinpunk.controllers.Tx.prototype.scanQR = function(event) {
       return;
     }
 
-    if(uri.protocol() != 'bitcoin')
-      return errorsDiv.removeClass('hidden').text('Not a valid Bitcoin QR code.');
+    if(uri.protocol() != 'templecoin')
+      return errorsDiv.removeClass('hidden').text('Not a valid Templecoin QR code.');
     
     var address = uri.path();
     if(!address || address == '')
-      return errorsDiv.removeClass('hidden').text('No Bitcoin address found in QR code.');
+      return errorsDiv.removeClass('hidden').text('No Templecoin address found in QR code.');
 
     $('#address').val(address);
     

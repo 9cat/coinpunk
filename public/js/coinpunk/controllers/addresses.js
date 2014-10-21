@@ -69,8 +69,7 @@ coinpunk.controllers.Addresses.prototype.requestBTCUpdate = function() {
 };
 
 coinpunk.controllers.Addresses.prototype.drawRequestQR = function(address) {
-  var uri = URI({protocol: 'bitcoin', path: address});
-  
+  var uri = URI({protocol: 'templecoin', path: address});  
   var amount = $('#amount').val();
   var label = $('#label').val();
   var message = $('#message').val();
@@ -85,6 +84,8 @@ coinpunk.controllers.Addresses.prototype.drawRequestQR = function(address) {
     uri.addQuery('message', message);
 
   $('#qrcode').html('');
+  console.log('uri.toString()='+uri.toString())
+
   new QRCode(document.getElementById('qrcode'), uri.toString().replace('://', ':'));
 }
 
