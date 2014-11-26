@@ -359,8 +359,14 @@ coinpunk.Wallet = function(walletKey, walletId) {
   this.calculateFee = function(amtString, addressString, changeAddress) {
     var tx = this.createTx(amtString, 0, addressString, changeAddress);
     var txSize = tx.raw.length / 2;
-    // console.log(txSize);
-    return Math.ceil(txSize/1000)*0.0001;
+    
+    txA = parseFloat(amtString)*0.001+0.001;
+    txS = Math.ceil(txSize/1000)*0.0001+0.001;
+    console.log('txSize='+txSize+',txS='+txS+',txA='+txA);
+    
+    if (txA>txS)    
+     return txA;
+    return txS;
   };
 
   this.createSend = function(amtString, feeString, addressString, changeAddress) {
